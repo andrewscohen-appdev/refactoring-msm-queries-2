@@ -19,6 +19,12 @@ class Actor < ApplicationRecord
     return the_many
   end
 
+  has_many(:characters, {
+    :class_name => "Character",
+    :foreign_key => "actor_id",
+    :dependent => :destroy
+  })
+
   def filmography
     the_many = Array.new
 
@@ -30,5 +36,10 @@ class Actor < ApplicationRecord
 
     return the_many
   end
+
+  has_many(:filmography, {
+    :through => :characters,
+    :source => :movie
+  })
 
 end

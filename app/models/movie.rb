@@ -25,7 +25,9 @@ class Movie < ApplicationRecord
 
   belongs_to(:director, {
     :class_name => "Director",
-    :foreign_key => "director_id"
+    :foreign_key => "director_id",
+    :required => false,
+    :dependent => :destroy
   })
   
 end
